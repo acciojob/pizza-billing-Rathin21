@@ -1,26 +1,27 @@
 package com.driver;
 
-class Pizza {
+public class Pizza {
 
-    private int price;
+    int price;
     private Boolean isVeg;
     private String bill;
     private boolean extraCheese=false;
     private boolean extraToppings=false;
     private boolean paperBag = false;
+    boolean deluxePizza=false;
 
     public Pizza(Boolean isVeg){
         this.isVeg = isVeg;
         if(isVeg==true)
-            price=300;
+            this.price=300;
         else
-            price=400;
+            this.price=400;
         // your code goes here
     }
 
     public int getPrice(){
         
-        return this.price;
+        return price;
     }
 
     public void addExtraCheese(){
@@ -46,20 +47,27 @@ class Pizza {
     public void addTakeaway(){
         // your code goes here
         paperBag=true;
-        price +=40;
+        price +=20;
     }
 
     public String getBill(){
         // your code goes here
-        if(isVeg==true)
-            bill +="Base Price Of The Pizza: 300"+'\n';
-        else
-            bill +="Base Price Of The Pizza: 400"+'\n';
-        
-        if(extraCheese==true)
+        if(deluxePizza==true){
+            if(isVeg==true)
+                bill +="Base Price Of The Pizza: 450"+'\n';
+            else
+                bill +="Base Price Of The Pizza: 550"+'\n';
+        }
+        else{
+            if(isVeg==true)
+                bill +="Base Price Of The Pizza: 300"+'\n';
+            else
+                bill +="Base Price Of The Pizza: 400"+'\n';
+        }
+        if(extraCheese==true && deluxePizza==false)
             bill +="Extra Cheese Added: 80"+'\n';
 
-        if(extraToppings==true){
+        if(extraToppings==true && deluxePizza==false){
             if(isVeg==true)
                 bill+="Extra Toppings Added: 70"+'\n';
             else
@@ -68,8 +76,14 @@ class Pizza {
 
         if(paperBag==true)
             bill +="Paperbag Added: 20"+'\n';
-
-        bill +="Total Price:"+price;
+        if(deluxePizza==false)
+            bill +="Total Price:"+price;
+        else{
+            if(paperBag==true && isVeg==true)
+                bill +="Total Price: 470";
+            else 
+                bill += "Total Price: 570"; 
+        }
         return this.bill;
     }
 }
