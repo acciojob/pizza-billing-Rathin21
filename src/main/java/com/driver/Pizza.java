@@ -2,14 +2,13 @@ package com.driver;
 
 public class Pizza {
 
-    int price;
+    private int price;
     private Boolean isVeg;
     private String bill="";
     private boolean extraCheese=false;
     private boolean extraToppings=false;
     private boolean paperBag = false;
-    boolean deluxePizza=false;
-
+    
     public Pizza(Boolean isVeg){
         this.isVeg = isVeg;
         if(isVeg==true)
@@ -53,22 +52,16 @@ public class Pizza {
 
     public String getBill(){
         // your code goes here
-        if(deluxePizza==true){
-            if(isVeg==true)
-                bill +="Base Price Of The Pizza: 450"+'\n';
-            else
-                bill +="Base Price Of The Pizza: 550"+'\n';
-        }
-        else{
-            if(isVeg==true)
+        
+        if(isVeg==true)
                 bill +="Base Price Of The Pizza: 300"+'\n';
-            else
+        else
                 bill +="Base Price Of The Pizza: 400"+'\n';
-        }
-        if(extraCheese==true && deluxePizza==false)
+        
+        if(extraCheese==true)
             bill +="Extra Cheese Added: 80"+'\n';
 
-        if(extraToppings==true && deluxePizza==false){
+        if(extraToppings==true){
             if(isVeg==true)
                 bill+="Extra Toppings Added: 70"+'\n';
             else
@@ -79,12 +72,7 @@ public class Pizza {
             bill +="Paperbag Added: 20"+'\n';
         
             bill +="Total Price:"+price;
-        // else{
-        //     if(paperBag==true && isVeg==true)
-        //         bill +="Total Price: 470";
-        //     else 
-        //         bill += "Total Price: 570"; 
-        
+                
         return this.bill;
     }
 }
